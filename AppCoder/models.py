@@ -3,8 +3,8 @@ from django.db import models
 # Create your models here.
 
 class Curso (models.Model):
-    nombre_curso = models.CharField(max_length=50)
-    numero_comision = models.IntegerField()
+    nombre = models.CharField(max_length=50)
+    comision = models.IntegerField()
 
     def __str__ (self):
         return f'{self.nombre} - {str(self.comision)}'
@@ -34,4 +34,21 @@ class Entregable (models.Model):
     def __str__ (self):
         return f'{self.nombre} - {self.entregado}'
 
+class Familiar (models.Model):
+    nombre = models.CharField (max_length=60)
+    apellido= models.CharField (max_length=60)
+    fecha_nacimiento = models.DateField()
+
+    def __str__ (self):
+        return f' {self.nombre} - {self.apellido} - Nacimiento: {self.fecha_nacimiento}'
+
+#MODELO de FUTBOL
+class Futbol (models.Model):
+    nombre = models.CharField (max_length=60)
+    apellido= models.CharField (max_length=60)
+    anio_nacimiento = models.IntegerField()
+
+
+    def __str__ (self):
+        return f' {self.nombre} - {self.apellido} - Categoria: {self.anio_nacimiento}'
 
