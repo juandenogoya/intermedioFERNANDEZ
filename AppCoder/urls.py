@@ -16,6 +16,11 @@ urlpatterns = [
     path('futbol/', futbol, name = 'futbol'),
     path('futbolFormulario/', futbolFormulario, name = 'futbolFormulario'),
 
+    path('leerPersonas/', leerPersonas, name = "leerPersonas"),
+    path('agregarPersona/', agregarPersona, name = "agregarPersona"), 
+    path('editarPersona/<id>', editarPersona, name = "editarPersona"), 
+    path('eliminarPersona/<id>', eliminarPersona, name = "eliminarPersona"), 
+
 
 
 ]

@@ -121,3 +121,74 @@ def familiaFormulario (request):
     else:
         formulario = FamiliaForm()
         return render (request, "AppCoder/familiaFormulario.html", {"form": formulario})
+
+
+
+#CREAR un VISTA que me permita ver en una lista las personas creadas
+def leerPersonas (request):
+    personas = Persona.objects.all() #Es "all" porque quiero ver todas las personas.
+    return render (request, "AppCoder/personas.html", {"personas": personas})
+
+
+
+
+def agregarPersona (request):
+    if request.method == "POST":
+        formulario = PersonaForms(request.POST)
+        if formulario.is_valid():
+            info = formulario.cleaned_data
+            nombre = info["nombre"]
+            apellido = info ["apellido"]
+            email = info ["email"]
+            fecha_nacimiento = info ["fechaNacimiento"]
+            tieneObraSocial = info ["tieneObraSocial"]
+            persona = Persona (nombre = nombre, apellido = apellido, fechaNacimiento = fecha_nacimiento, tieneObraSocial = tieneObraSocial)
+            persona.save()
+
+            persona = Persona.objects.all()
+            return render (request, "AppCoder/personas.html", {"personas": persona, "mensaje": "Persona Guardada Correctamente"})
+
+        
+        else:
+            return render(request, "AppCoder/agregarPersona.html", {"formulario": formulario, "mensaje": "Informacion No Valida"})
+    else:
+        form = PersonaForms()
+        return render(request, "AppCoder/agregarPersona.html", {"form": form})
+
+
+
+#VISTA PARA AGREGAR PERSONAS
+def editarPersona (request, id):
+    persona = Persona.objects.get(id=id)
+    if request.method == "POST":
+        formulario = PersonaForms(request.POST)
+        if formulario.is_valid():
+            info = formulario.cleaned_data
+            nombre = info ["nombre"]
+            apellido = info ["apellido"]
+            email = info ["email"]
+            fecha_nacimiento = info ["fechaNacimiento"]
+            tieneObraSocial = info ["tieneObraSocial"]
+            persona.nombre = nombre
+            persona.apellido = apellido
+            persona.email = email
+            persona.fechaNacimiento = fecha_nacimiento
+            persona.tieneObraSocial = tieneObraSocial
+
+            persona.save()
+            persona = Persona.objects.all()
+            return render (request, "AppCoder/personas.html", {"personas": persona, "mensaje": "Persona Editada Correctamente"})
+
+
+    else: 
+   
+        form = PersonaForms (initial = {"nombre": persona.nombre, "apellido": persona.apellido, "email": persona.email, "fecha_nacimiento": persona.fechaNacimiento, "tieneObraSocial": persona.tieneObraSocial})
+        return render (request, "AppCoder/editarPersona.html", {"formulario": form, "personas": persona})
+    
+
+def eliminarPersona (request, id):
+    persona = Persona.objects.get(id=id)
+    persona.delete()
+    persona = Persona.objects.all()
+    return render (request, "AppCoder/personas.html", {"personas": persona, "mensaje": "Persona Eliminada Correctamente"})
+

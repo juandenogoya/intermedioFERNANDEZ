@@ -52,3 +52,18 @@ class Futbol (models.Model):
     def __str__ (self):
         return f' {self.nombre} - {self.apellido} - Categoria: {self.anio_nacimiento}'
 
+
+#MODELO de PERSONA
+class Persona (models.Model):
+    nombre = models.CharField (max_length= 50)
+    apellido = models.CharField (max_length= 50)
+    email = models.EmailField()
+    fechaNacimiento = models.DateField()
+    tieneObraSocial = models.BooleanField()
+
+    def __str__ (self):
+        return f"{self.nombre} - {self.apellido}"
+
+
+
+

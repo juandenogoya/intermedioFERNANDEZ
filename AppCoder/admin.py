@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Curso, Entregable, Estudiante, Profesor, Familiar, Futbol
+from .models import Curso, Entregable, Estudiante, Profesor, Familiar, Futbol, Persona
 
 
 # Register your models here.
@@ -10,6 +10,7 @@ admin.site.register(Profesor)
 admin.site.register(Estudiante)
 admin.site.register(Familiar)
 admin.site.register(Futbol)
+admin.site.register(Persona)
 
 
 

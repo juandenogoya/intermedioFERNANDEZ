@@ -18,6 +18,16 @@ class FutbolForm (forms.Form):
 
 
 class FamiliaForm (forms.Form):
-    nombre = forms.CharField (max_length=60)
-    apellido= forms.CharField (max_length=60)
-    fecha_nacimiento = forms.DateField()
+    nombre = forms.CharField (label = "Nombre", max_length=60)
+    apellido= forms.CharField (label = "Apellido", max_length=60)
+    fecha_nacimiento = forms.DateField(label = "Fecha Nacimiento" )
+
+
+class PersonaForms (forms.Form):
+    nombre = forms.CharField (label = "Nombre", max_length=50)
+    apellido = forms.CharField (label = "Apellido", max_length=50)
+    email = forms.EmailField(label= "email")
+    fechaNacimiento = forms.DateField(label= "Fecha Nacimiento")
+    tieneObraSocial = forms.BooleanField(label = "Obras Social")
+
+

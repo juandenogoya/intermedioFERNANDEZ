@@ -1,0 +1,34 @@
+{% extends 'AppCoder/padre.html' %}
+
+{% load static %}
+{% block titulo %}
+
+<h1> PERSONAS </h1>
+
+{% endblock %}
+
+{% block contenido_que_cambia %}
+
+<h3> {{ mensaje }} </h3>
+
+<ul>
+    <h1> Listado de Personas </h1>
+
+    {% for persona in personas %}
+    <li> {{ persona.nombre }} {{ persona.apellido }} - {{ persona.email }} | {{ persona.fechaNacimiento }} </li>
+
+    <a class="btn btn-success" href = "{% url 'editarPersona' persona.id %}"> Editar Persona - {{ persona }} </a>
+    <a class="btn btn-danger" href = "{% url 'eliminarPersona' persona.id %}"> Eliminar Persona - {{ persona }} </a>
+
+
+    {% endfor %}
+
+</ul>
+
+
+<a class="btn btn-primary" href = "{% url 'agregarPersona' %}"> Agregar Persona </a>
+
+{% endblock %}
+
+
+
